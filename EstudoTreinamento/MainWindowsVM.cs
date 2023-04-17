@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -11,8 +12,10 @@ namespace EstudoTreinamento
 
         public RelayCommand show { get; private set; }
         public string stringBox { get; set; }
+        public ObservableCollection<string> strings { get; set; }
 
         public MainWindowsVM() { 
+            strings = new ObservableCollection<string>();
             InitializeCommands();
         }
 
@@ -27,6 +30,7 @@ namespace EstudoTreinamento
         {
             show = new RelayCommand((object _) =>
             {
+                strings.Add(stringBox);
                 Notify("stringBox");
             });
         }
