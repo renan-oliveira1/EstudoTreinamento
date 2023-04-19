@@ -1,0 +1,16 @@
+﻿<Window x:Class="EstudoTreinamento.View.FormSeller"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EstudoTreinamento.View"
+        mc:Ignorable="d"
+        Title="FormSeller" Height="450" Width="800">
+    <Grid>
+        <TextBox HorizontalAlignment="Center" Margin="0,176,0,0" TextWrapping="Wrap" Text="{Binding Name}" VerticalAlignment="Top" Width="120"/>
+        <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Age}" VerticalAlignment="Center" Width="120"/>
+        <Button Content="Salvar" HorizontalAlignment="Center" Margin="0,262,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.571,0.539" Width="81" Click="btnSave"/>
+        <Button Content="Cancelar" HorizontalAlignment="Center" Margin="0,287,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.543,0.657" Width="81" Click="btnCancel"/>
+
+    </Grid>
+</Window>

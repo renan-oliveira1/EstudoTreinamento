@@ -10,22 +10,28 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace EstudoTreinamento
+namespace EstudoTreinamento.View
 {
     /// <summary>
-    /// Interação lógica para MainWindow.xam
+    /// Lógica interna para FormSeller.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class FormSeller : Window
     {
-        public MainWindow()
+        public FormSeller()
         {
             InitializeComponent();
-            DataContext = new MainWindowsVM();
         }
 
-        
+        public void btnSave(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = true;
+        }
+
+        public void btnCancel(object sender, RoutedEventArgs e)
+        {
+            this.DialogResult = false;
+        }
     }
 }
