@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-public class Vehicle
+﻿public class Vehicle
 {
     private int cod;
     private string name;
@@ -31,7 +25,7 @@ public class Vehicle
 
     public int Cod
     {
-        get { return cod;  }
+        get { return cod; }
         set { cod = value; }
     }
 
@@ -50,7 +44,7 @@ public class Vehicle
     public double Value
     {
         get { return value; }
-        set { this.value = value;  }
+        set { this.value = value; }
     }
 
 }

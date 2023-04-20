@@ -3,21 +3,17 @@ using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Data.Common;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Documents;
 
 namespace EstudoTreinamento.Class.Db
 {
-    public class PostgreDb: IDatabase
+    public class PostgreDb : IDatabase
     {
         public string connString = "Host=localhost; Port=5555; Username=postgres; password=1234; Database=postgres";
         private DbConnection connection;
 
 
-        public PostgreDb() {
+        public PostgreDb()
+        {
             connection = new NpgsqlConnection(connString);
             connection.Open();
         }
@@ -160,7 +156,7 @@ namespace EstudoTreinamento.Class.Db
             {
                 throw new Exception("Error to get seller!!");
             }
-            
+
         }
 
         public void UpdateSeller(Seller seller)
@@ -200,7 +196,7 @@ namespace EstudoTreinamento.Class.Db
                 throw new Exception("Error to delete seller!!");
             }
 
-         
+
         }
 
         public void SaleVehicle(Seller seller, Vehicle vehicle)
@@ -219,7 +215,7 @@ namespace EstudoTreinamento.Class.Db
             {
                 throw new Exception("Error to sell vehicle!!");
             }
-            
+
         }
 
         public Report GetSales(Seller seller)

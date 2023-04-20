@@ -3,20 +3,15 @@ using EstudoTreinamento.Class.Db;
 using EstudoTreinamento.Class.Entity;
 using EstudoTreinamento.View;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
-using System.Xml.Serialization;
 
 namespace EstudoTreinamento
 {
-    public class MainWindowsVM : INotifyPropertyChanged {
+    public class MainWindowsVM : INotifyPropertyChanged
+    {
 
         public ICommand AddVehicle { get; private set; }
         public ICommand DeleteVehicle { get; private set; }
@@ -35,7 +30,8 @@ namespace EstudoTreinamento
 
         private IDatabase postgreDb;
 
-        public MainWindowsVM() {
+        public MainWindowsVM()
+        {
             try
             {
                 postgreDb = new PostgreDb();
@@ -68,7 +64,7 @@ namespace EstudoTreinamento
                 FormVehicle screen = new FormVehicle();
                 screen.DataContext = newVehicle;
                 bool? resultDialog = screen.ShowDialog();
-                if(resultDialog.HasValue && resultDialog.Value == true)
+                if (resultDialog.HasValue && resultDialog.Value == true)
                 {
                     try
                     {
@@ -78,7 +74,7 @@ namespace EstudoTreinamento
                         Notify(nameof(Vehicles));
                         MessageBox.Show("Veiculo inserido");
                     }
-                    catch(Exception ex)
+                    catch (Exception ex)
                     {
                         MessageBox.Show("Erro ao inserir Veiculo \n"
                             + ex.Message);
@@ -88,7 +84,7 @@ namespace EstudoTreinamento
 
             DeleteVehicle = new RelayCommand((object _) =>
             {
-                if(SelectedVehicle != null)
+                if (SelectedVehicle != null)
                 {
                     try
                     {
@@ -106,17 +102,18 @@ namespace EstudoTreinamento
                 }
             });
 
-            UpdateVehicle = new RelayCommand((object _) => { 
+            UpdateVehicle = new RelayCommand((object _) =>
+            {
 
                 FormVehicle screen = new FormVehicle();
                 screen.DataContext = SelectedVehicle;
                 bool? resultScreen = screen.ShowDialog();
-                if (resultScreen.HasValue && resultScreen.Value ==true)
+                if (resultScreen.HasValue && resultScreen.Value == true)
                 {
                     try
                     {
                         postgreDb.UpdateVehicle(SelectedVehicle);
-                        Vehicles.Clear( );
+                        Vehicles.Clear();
                         Vehicles = new ObservableCollection<Vehicle>(postgreDb.GetVehicles());
                         Notify(nameof(Vehicles));
                         MessageBox.Show("Veiculo atualizado!");
@@ -138,7 +135,7 @@ namespace EstudoTreinamento
                 FormSeller formSeller = new FormSeller();
                 formSeller.DataContext = newSeller;
                 bool? resultDialog = formSeller.ShowDialog();
-                if(resultDialog.HasValue && resultDialog.Value ==true)
+                if (resultDialog.HasValue && resultDialog.Value == true)
                 {
                     try
                     {
@@ -215,7 +212,8 @@ namespace EstudoTreinamento
             {
                 try
                 {
-                    if (SelectedVehicle != null && SelectedSeller != null) {
+                    if (SelectedVehicle != null && SelectedSeller != null)
+                    {
                         postgreDb.SaleVehicle(SelectedSeller, SelectedVehicle);
                     }
                 }
@@ -226,10 +224,10 @@ namespace EstudoTreinamento
                 }
             });
 
-           
+
         }
 
     }
 
- 
+
 }
