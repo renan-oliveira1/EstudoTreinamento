@@ -107,6 +107,7 @@
     <Compile Include="Class\Entity\Report.cs" />
     <Compile Include="Class\Entity\Seller.cs" />
     <Compile Include="Class\IDatabase.cs" />
+    <Compile Include="Class\DatabaseConnection.cs" />
     <Compile Include="View\FormSeller.xaml.cs">
       <DependentUpon>FormSeller.xaml</DependentUpon>
     </Compile>

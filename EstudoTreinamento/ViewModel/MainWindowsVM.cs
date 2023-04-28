@@ -34,7 +34,7 @@ namespace EstudoTreinamento
         {
             try
             {
-                postgreDb = new PostgreDb();
+                postgreDb = new PostgreDb(DatabaseConnection.PostgresConnection);
                 Sellers = new ObservableCollection<Seller>(postgreDb.GetSellers());
                 Vehicles = new ObservableCollection<Vehicle>(postgreDb.GetVehicles());
             }

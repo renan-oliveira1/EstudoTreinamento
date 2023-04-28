@@ -1,4 +1,6 @@
-﻿namespace EstudoTreinamento.Class.Entity
+﻿using System;
+
+namespace EstudoTreinamento.Class.Entity
 {
     public class Seller
     {
@@ -37,6 +39,22 @@
         {
             get { return age; }
             set { age = value; }
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Seller seller &&
+                   cod == seller.cod &&
+                   name == seller.name &&
+                   age == seller.age &&
+                   Cod == seller.Cod &&
+                   Name == seller.Name &&
+                   Age == seller.Age;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(cod, name, age, Cod, Name, Age);
         }
     }
 }

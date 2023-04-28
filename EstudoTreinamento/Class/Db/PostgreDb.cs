@@ -12,13 +12,13 @@ namespace EstudoTreinamento.Class.Db
         private DbConnection connection;
 
 
-        public PostgreDb()
+        public PostgreDb(DbConnection connec)
         {
-            connection = new NpgsqlConnection(connString);
+            connection = connec;
             connection.Open();
         }
 
-        public void InsertVehicle(Vehicle vehicle)
+        public bool InsertVehicle(Vehicle vehicle)
         {
             string sql = "INSERT INTO vehicle (name, brand, value) VALUES (@name,  @brand, @value)";
 
@@ -31,6 +31,7 @@ namespace EstudoTreinamento.Class.Db
                     command.Parameters.AddWithValue("value", vehicle.Value);
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
@@ -64,13 +65,13 @@ namespace EstudoTreinamento.Class.Db
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to get vehicles!!");
+                throw new Exception(ex.Message + "\nCouldn't get data from database!!");
             }
 
             return list;
         }
 
-        public void UpdateVehicle(Vehicle vehicle)
+        public bool UpdateVehicle(Vehicle vehicle)
         {
             string sql = "UPDATE vehicle " +
                 "SET name = @name, brand = @brand, value = @value " +
@@ -87,14 +88,15 @@ namespace EstudoTreinamento.Class.Db
                     command.Parameters.AddWithValue("cod", vehicle.Cod);
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to update vehicle!!");
+                throw new Exception(ex.Message + "\nCouldn't update data from database!!");
             }
         }
 
-        public void DeleteVehicle(Vehicle vehicle)
+        public bool DeleteVehicle(Vehicle vehicle)
         {
             try
             {
@@ -103,14 +105,15 @@ namespace EstudoTreinamento.Class.Db
                 {
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to delete vehicle!!");
+                throw new Exception(ex.Message + "\nCouldn't delete data from database!!");
             }
         }
 
-        public void InsertSeller(Seller seller)
+        public bool InsertSeller(Seller seller)
         {
             //try catch
             string sql = "INSERT INTO seller (name, age) VALUES (@name,  @age)";
@@ -123,10 +126,11 @@ namespace EstudoTreinamento.Class.Db
                     command.Parameters.AddWithValue("age", seller.Age);
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to insert seller!!");
+                throw new Exception(ex.Message + "\nCouldn't insert data to database!!");
             }
 
         }
@@ -154,12 +158,12 @@ namespace EstudoTreinamento.Class.Db
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to get seller!!");
+                throw new Exception(ex.Message + "\nCouldn't get data from database!!");
             }
 
         }
 
-        public void UpdateSeller(Seller seller)
+        public bool UpdateSeller(Seller seller)
         {
             string sql = "UPDATE seller " +
                 "SET name = @name, age = @age" +
@@ -174,14 +178,15 @@ namespace EstudoTreinamento.Class.Db
                     command.Parameters.AddWithValue("cod", seller.Cod);
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to update seller!!");
+                throw new Exception(ex.Message + "\nCouldn't update data from database!!");
             }
         }
 
-        public void DeleteSeller(Seller seller)
+        public bool DeleteSeller(Seller seller)
         {
             string sql = $"DELETE FROM seller WHERE cod = {seller.Cod}";
             try
@@ -190,16 +195,17 @@ namespace EstudoTreinamento.Class.Db
                 {
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to delete seller!!");
+                throw new Exception(ex.Message + "\nCouldn't delete data from database!!");
             }
 
 
         }
 
-        public void SaleVehicle(Seller seller, Vehicle vehicle)
+        public bool SaleVehicle(Seller seller, Vehicle vehicle)
         {
             string sql = "INSERT INTO sales(sellerCod, vehicleCod) VALUES(@sellerCod, @vehicleCod);";
             try
@@ -210,10 +216,11 @@ namespace EstudoTreinamento.Class.Db
                     command.Parameters.AddWithValue("vehicleCod", vehicle.Cod);
                     command.ExecuteNonQuery();
                 }
+                return true;
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to sell vehicle!!");
+                throw new Exception(ex.Message + "\nCouldn't insert data to database!!");
             }
 
         }
@@ -248,7 +255,7 @@ namespace EstudoTreinamento.Class.Db
             }
             catch (Exception ex)
             {
-                throw new Exception("Error to get sales!!");
+                throw new Exception(ex.Message + "\nCouldn't get data from database!!");
             }
 
         }

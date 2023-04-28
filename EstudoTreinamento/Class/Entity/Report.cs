@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace EstudoTreinamento.Class.Entity
 {
@@ -13,6 +14,18 @@ namespace EstudoTreinamento.Class.Entity
         {
             Seller = seller;
             Vehicles = vehicles;
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Report report &&
+                   EqualityComparer<Seller>.Default.Equals(Seller, report.Seller) &&
+                   EqualityComparer<List<Vehicle>>.Default.Equals(Vehicles, report.Vehicles);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Seller, Vehicles);
         }
     }
 }
